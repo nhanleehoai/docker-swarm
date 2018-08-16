@@ -8,7 +8,7 @@ the applications are designed with Microservice architecture in mind.
 
 - Basick knowledge of Docker and Docker Compose, Docker Registry
 - Two linux servers installed with Docker CE 18.x and latest Docker Compose.
-- One of the server is the Docker Manager and the other is a worker nodes
+- One of the server is the Docker Manager and the other is a worker node
 
 In my case, I have :
   - A CentOS 7 server name centos1. It plays the role of Docker Manager 
@@ -184,7 +184,7 @@ Now we now the ID of Nodejs service. let have 4 instance of NodeJs
 
 Now guess the new instance of Nodejs run on which server?? It is Worker server! because Swarm evenly balance the instance
 
-<img src="07-check-ps-worker.png" />
+<img src="docs/07-check-ps-worker.png" />
 
 
 OK what's next?  Let drain the WORKER  to see what's happen
@@ -193,7 +193,7 @@ OK what's next?  Let drain the WORKER  to see what's happen
 	docker node ls
 ```
 
-<img src="08-node-list.png" />
+<img src="docs/08-node-list.png" />
 
 ```
 	docker node update --availability drain <workder-node-id>
@@ -204,7 +204,7 @@ Check the container on Manager node we'll see Swarm has run addtionally 2 Nodejs
 ```
 	docker ps
 ```
-<img src="08-ps-master.png" />
+<img src="docs/08-ps-master.png" />
 
 
 
