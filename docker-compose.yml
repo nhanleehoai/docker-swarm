@@ -1,0 +1,35 @@
+version: "3.3"
+
+services:
+  nginx:
+    image: registry.nhan.com:5000/swarm1/nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - nodejs
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: vip
+      placement:
+        constraints:
+            - node.role == manager
+       
+
+  nodejs:
+    image: registry.nhan.com:5000/swarm1/nodejs
+    networks:
+       - nodejs
+    deploy:
+      mode: replicated
+      replicas: 3
+      endpoint_mode: vip
+#      placement:
+#        constraints:
+#            - node.role == worker
+        
+        
+
+networks:
+  nodejs:

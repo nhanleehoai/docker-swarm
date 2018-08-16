@@ -1,0 +1,22 @@
+version: "3.3"
+
+services:
+  registry:
+    image: registry:2
+    ports:
+      - "5000:5000"
+    environment:
+      - REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/opt/registry/data 
+      - REGISTRY_HTTP_ADDR=0.0.0.0:5000 
+      - REGISTRY_HTTP_TLS_CERTIFICATE=/opt/registry/registry.cert
+      - REGISTRY_HTTP_TLS_KEY=/opt/registry/registry.key
+    volumes:
+        - data:/opt/registry
+volumes:
+  data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/opt/registry'
+    
